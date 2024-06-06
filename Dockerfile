@@ -1,5 +1,5 @@
 # preparatory actions stage
-FROM python:3.11-slim-buster as builder
+FROM python:3.11-slim-buster AS builder
 
 WORKDIR /app
 
@@ -33,5 +33,3 @@ COPY . .
 RUN chown -R app:app ./* && chmod -R 777 ./*
 
 USER app
-
-ENTRYPOINT ["/bin/entrypoint.sh"]

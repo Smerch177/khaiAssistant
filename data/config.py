@@ -23,6 +23,95 @@ WEBHOOK_PORT = config('WEBHOOK_PORT', default=8000)
 WEBHOOK_HOST = config('WEBHOOK_HOST', default=None)
 WEBHOOK_PATH = config('WEBHOOK_PATH', default=None)
 
+
+MINSCOREFORBUDGET126 = config('MINSCOREFORBUDGET126', default=None, cast=float)
+MINSCOREFORBUDGET172 = config('MINSCOREFORBUDGET172', default=None, cast=float)
+
+
 I18N_DEFAULT_LOCALE = config('I18N_DEFAULT_LOCALE', default='en')
 I18N_DOMAIN = 'bot'
 LOCALES_DIR = f'{DIR}/locales'
+
+
+# NMT
+nmt_24_172 = {
+    1: {
+        "subject": "Українська мова(Ukrainian)",
+        "weight": 0.3
+    },
+    2: {
+        "subject": "Математика(Math)",
+        "weight": 0.5
+    },
+    3: {
+        "subject": "Історія України(History)",
+        "weight": 0.2
+    },
+    4: [
+        {
+            "subject": "Іноземна мова(Foreign)",
+            "weight": 0.25
+        },
+        {
+            "subject": "Біологія(Biology)",
+            "weight": 0.2
+        },
+        {
+            "subject": "Фізика(Physics)",
+            "weight": 0.5
+        },
+        {
+            "subject": "Хімія(Chemistry)",
+            "weight": 0.2
+        },
+        {
+            "subject": "Українська література(Ukrainian literature)",
+            "weight": 0.2
+        },
+        {
+            "subject": "Географія(Geography)",
+            "weight": 0.2
+        }
+    ]
+}
+
+nmt_24_126 = {
+    1: {
+        "subject": "Українська мова(Ukrainian)",
+        "weight": 0.3
+    },
+    2: {
+        "subject": "Математика(Math)",
+        "weight": 0.5
+    },
+    3: {
+        "subject": "Історія України(History)",
+        "weight": 0.2
+    },
+    4: [
+        {
+            "subject": "Іноземна мова(Foreign)",
+            "weight": 0.3
+        },
+        {
+            "subject": "Біологія(Biology)",
+            "weight": 0.2
+        },
+        {
+            "subject": "Фізика(Physics)",
+            "weight": 0.4
+        },
+        {
+            "subject": "Хімія(Chemistry)",
+            "weight": 0.2
+        },
+        {
+            "subject": "Українська література(Ukrainian literature)",
+            "weight": 0.2
+        },
+        {
+            "subject": "Географія(Geography)",
+            "weight": 0.2
+        }
+    ]
+}

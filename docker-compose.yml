@@ -31,12 +31,17 @@ services:
       WEBHOOK_PORT: ${WEBHOOK_PORT}
       WEBHOOK_HOST: ${WEBHOOK_HOST:-localhost}
       WEBHOOK_PATH: ${WEBHOOK_PATH}
+      MINSCOREFORBUDGET126: ${MINSCOREFORBUDGET126}
+      MINSCOREFORBUDGET172: ${MINSCOREFORBUDGET172}
     tty: true
     stdin_open: true
 
   redis:
     image: redis:alpine
     command: redis-server
+    ports:
+      - "6380:6379"
+    restart: always
     environment:
       - REDIS_REPLICATION_MODE=master
 
@@ -49,6 +54,61 @@ services:
       POSTGRES_PASSWORD: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+
+  taskiq_worker:
+    build: .
+    command: taskiq worker brok:broker --fs-discover --tasks-pattern "tasks.py"
+    depends_on:
+      - redis
+    environment:
+      ADMINS: ${ADMINS}
+      BOT_TOKEN: ${BOT_TOKEN}
+      RATE_LIMIT: ${RATE_LIMIT:-0.5}
+
+      DATABASE_USER: postgres
+      DATABASE_PASS: postgres
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+
+      DATABASE_NAME: postgres
+
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_DB: 5
+
+      WEBHOOK_PORT: ${WEBHOOK_PORT}
+      WEBHOOK_HOST: ${WEBHOOK_HOST:-localhost}
+      WEBHOOK_PATH: ${WEBHOOK_PATH}
+      MINSCOREFORBUDGET126: ${MINSCOREFORBUDGET126}
+      MINSCOREFORBUDGET172: ${MINSCOREFORBUDGET172}
+
+  taskiq_scheduler:
+    build: .
+    command: taskiq scheduler brok:scheduler --fs-discover --tasks-pattern "tasks.py"
+    depends_on:
+      - redis
+      - taskiq_worker
+    environment:
+      ADMINS: ${ADMINS}
+      BOT_TOKEN: ${BOT_TOKEN}
+      RATE_LIMIT: ${RATE_LIMIT:-0.5}
+
+      DATABASE_USER: postgres
+      DATABASE_PASS: postgres
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+
+      DATABASE_NAME: postgres
+
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_DB: 5
+
+      WEBHOOK_PORT: ${WEBHOOK_PORT}
+      WEBHOOK_HOST: ${WEBHOOK_HOST:-localhost}
+      WEBHOOK_PATH: ${WEBHOOK_PATH}
+      MINSCOREFORBUDGET126: ${MINSCOREFORBUDGET126}
+      MINSCOREFORBUDGET172: ${MINSCOREFORBUDGET172}
 
 
 volumes:

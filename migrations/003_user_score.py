@@ -1,4 +1,4 @@
-"""Peewee migrations -- 001_init.py.
+"""Peewee migrations -- 003_user_score.py.
 
 Some examples (model - class or model name)::
 
@@ -37,29 +37,21 @@ with suppress(ImportError):
 def migrate(migrator: Migrator, database: pw.Database, *, fake=False):
     """Write your migrations here."""
     
-    @migrator.create_model
-    class BaseModel(pw.Model):
-        id = pw.AutoField()
+    migrator.add_fields(
+        'users',
 
-        class Meta:
-            table_name = "basemodel"
+        score_126=pw.FloatField(null=True),
+        score_172=pw.FloatField(null=True))
 
-    @migrator.create_model
-    class User(pw.Model):
-        id = pw.BigIntegerField(primary_key=True)
-        name = pw.CharField(max_length=255)
-        username = pw.CharField(max_length=255, null=True)
-        language = pw.CharField(default='en', max_length=255)
-        is_admin = pw.BooleanField(default=False)
-        created_at = pw.DateTimeField()
-
-        class Meta:
-            table_name = "users"
+    migrator.remove_fields('users', 'score')
 
 
 def rollback(migrator: Migrator, database: pw.Database, *, fake=False):
     """Write your rollback migrations here."""
     
-    migrator.remove_model('users')
+    migrator.add_fields(
+        'users',
 
-    migrator.remove_model('basemodel')
+        score=pw.FloatField(null=True))
+
+    migrator.remove_fields('users', 'score_126', 'score_172')

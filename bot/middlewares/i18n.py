@@ -1,10 +1,9 @@
 """
 - Собираем все текста с проекта
-pybabel extract --input-dirs=. -o locales/bot.pot --project=bot
+pybabel extract --input-dirs=. -o locales/bot.pot --project=bot --ignore-dirs=venv
 
 - Создаем файлы с переводами на разные языки
 pybabel init -i locales/bot.pot -d locales -D bot -l en
-pybabel init -i locales/bot.pot -d locales -D bot -l ru
 pybabel init -i locales/bot.pot -d locales -D bot -l uk
 
 - После того как все текста переведены, нужно скомпилировать все переводы

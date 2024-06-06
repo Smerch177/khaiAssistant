@@ -9,10 +9,10 @@ def get_admin_commands(lang: str = 'en') -> list[BotCommand]:
     commands = get_default_commands(lang)
 
     commands.extend([
-        BotCommand(command='/export_users', description=_('export users to csv', locale=lang)),
-        BotCommand(command='/count_users', description=_('count users who contacted the bot', locale=lang)),
-        BotCommand(command='/count_active_users',
-                   description=_('count active users (who didn\'t block the bot)', locale=lang)),
+        BotCommand(command='/chats_list', description=_('get list of chats', locale=lang)),
+        BotCommand(command='/call_list', description=_('get list of calls', locale=lang)),
+        BotCommand(command='/create_post', description=_('create post', locale=lang)),
+        BotCommand(command='/view_user_scores', description=_('view user scores', locale=lang)),
     ])
 
     return commands

@@ -34,7 +34,7 @@ stop:
 	docker-compose stop
 
 docker_db_revision:
-	docker compose exec bot pw_migrate create --auto --database ${DATABASE_URL} --directory ${MIGRATIONS_PATH} ${RUN_ARGS}
+	docker compose exec bot pw_migrate create --auto --database ${DATABASE_URL} --directory ${MIGRATIONS_PATH} ${RUN_ARGS} && docker cp khaiassistant-bot:/app/migrations .
 
 db_revision:
 	pw_migrate create --auto --database ${DATABASE_URL} --directory ${MIGRATIONS_PATH} ${RUN_ARGS}

@@ -11,6 +11,9 @@ def get_default_commands(lang: str = 'en') -> list[BotCommand]:
         BotCommand(command='/help', description=_('how it works?', locale=lang)),
         BotCommand(command='/lang', description=_('change language', locale=lang)),
         BotCommand(command='/settings', description=_('open bot settings', locale=lang)),
+        BotCommand(command='/ask_question', description=_('ask a question', locale=lang)),
+        BotCommand(command='/order_call', description=_('order a call', locale=lang)),
+        BotCommand(command='/calculate_score', description=_('calculate your score', locale=lang)),
     ]
 
 

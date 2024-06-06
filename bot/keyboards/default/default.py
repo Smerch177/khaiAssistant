@@ -10,9 +10,15 @@ def get_default_markup(user):
     builder.add(KeyboardButton(text=_('Help 🆘')), KeyboardButton(text=_('Settings 🛠')))
 
     if user.is_admin:
-        builder.add(KeyboardButton(text=_('Export users 📁')))
-        builder.add(KeyboardButton(text=_('Count users 👥')))
-        builder.add(KeyboardButton(text=_('Count active users 👥')))
+        builder.add(KeyboardButton(text=_('Chats list 📁')))
+        builder.add(KeyboardButton(text=_('Call list 📞')))
+        builder.add(KeyboardButton(text=_('Create post ✉️')))
+        builder.add(KeyboardButton(text=_('View user scores 🧮')))
+
+    builder.add(KeyboardButton(text=_('Ask a question 🙋')))
+    builder.add(KeyboardButton(text=_('Order a call 📞')))
+    builder.add(KeyboardButton(text=_('Calculate your score 🧮')))
+
 
     if len(builder._markup) < 1:
         return ReplyKeyboardRemove()

@@ -1,4 +1,4 @@
-"""Peewee migrations -- 001_init.py.
+"""Peewee migrations -- 002_user.py.
 
 Some examples (model - class or model name)::
 
@@ -37,29 +37,17 @@ with suppress(ImportError):
 def migrate(migrator: Migrator, database: pw.Database, *, fake=False):
     """Write your migrations here."""
     
-    @migrator.create_model
-    class BaseModel(pw.Model):
-        id = pw.AutoField()
+    migrator.add_fields(
+        'users',
 
-        class Meta:
-            table_name = "basemodel"
-
-    @migrator.create_model
-    class User(pw.Model):
-        id = pw.BigIntegerField(primary_key=True)
-        name = pw.CharField(max_length=255)
-        username = pw.CharField(max_length=255, null=True)
-        language = pw.CharField(default='en', max_length=255)
-        is_admin = pw.BooleanField(default=False)
-        created_at = pw.DateTimeField()
-
-        class Meta:
-            table_name = "users"
+        phone=pw.CharField(max_length=255, null=True),
+        score_for=pw.CharField(max_length=255, null=True),
+        updated_at=pw.DateTimeField(null=True),
+        score=pw.FloatField(null=True),
+        is_ordered_call=pw.BooleanField(default=False))
 
 
 def rollback(migrator: Migrator, database: pw.Database, *, fake=False):
     """Write your rollback migrations here."""
     
-    migrator.remove_model('users')
-
-    migrator.remove_model('basemodel')
+    migrator.remove_fields('users', 'phone', 'score_for', 'updated_at', 'score', 'is_ordered_call')
