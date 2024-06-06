@@ -25,7 +25,7 @@ async def _answer_on_question(callback: types.CallbackQuery, callback_data: Answ
     await callback.message.answer(_('Enter answer'))
 
 
-@router.message(AnswerQuestion.answer, F.len() < 4096)
+@router.message(AnswerQuestion.answer, F.len < 4096)
 async def _set_answer(message: Message, state: FSMContext):
     await state.update_data(text=message.text)
     data = await state.get_data()
@@ -42,7 +42,7 @@ async def _ask_question(message: Message, state: FSMContext):
     await message.answer(_('Enter your question'))
 
 
-@router.message(AskQuestion.message, F.len() < 4096)
+@router.message(AskQuestion.message, F.len < 4096)
 async def _set_question_message(message: Message, state: FSMContext):
     await state.update_data(text=message.text)
     data = await state.get_data()
