@@ -25,7 +25,7 @@ async def _start(message: Message, user: User):
 @router.message(Command('help'))
 async def _help(message: Message, user: User):
     commands = get_admin_commands(user.language) if user.is_admin else get_default_commands(
-        user.language_code)
+        user.language)
 
     text = _('Help 🆘') + '\n\n'
     for command in commands:
