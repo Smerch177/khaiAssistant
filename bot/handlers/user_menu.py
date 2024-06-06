@@ -25,7 +25,7 @@ async def _answer_on_question(callback: types.CallbackQuery, callback_data: Answ
     await callback.message.answer(_('Enter answer'))
 
 
-@router.message(AnswerQuestion.answer)
+@router.message(AnswerQuestion.answer, len(F.text) < 4096)
 async def _set_answer(message: Message, state: FSMContext):
     await state.update_data(text=message.text)
     data = await state.get_data()
@@ -42,7 +42,7 @@ async def _ask_question(message: Message, state: FSMContext):
     await message.answer(_('Enter your question'))
 
 
-@router.message(AskQuestion.message)
+@router.message(AskQuestion.message, len(F.text) < 4096)
 async def _set_question_message(message: Message, state: FSMContext):
     await state.update_data(text=message.text)
     data = await state.get_data()
@@ -59,7 +59,7 @@ async def _order_call(message: Message, state: FSMContext):
     await message.answer(_('Enter your phone number'))
 
 
-@router.message(OrderCall.phone_number)
+@router.message(OrderCall.phone_number, F.text.regexp(r'^\+?\d{11,15}$'))
 async def _set_phone(message: Message, state: FSMContext, user: User):
     await state.update_data(phone_number=message.text)
     await state.clear()
@@ -85,7 +85,7 @@ async def _set_subjects(message: Message, state: FSMContext):
     await message.answer(_('Enter the score'))
 
 
-@router.message(CalculateNMTscore.scores, F.text.func(lambda text: text.isdigit()))
+@router.message(CalculateNMTscore.scores, F.text.func(lambda text: 0 <= int(text) <= 200))
 async def _set_scores(message: Message, state: FSMContext):
     data = await state.get_data()
     iteration = data.get('iteration', 1)
