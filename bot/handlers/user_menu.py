@@ -115,11 +115,11 @@ async def _set_ou(message: Message, user: User, state: FSMContext):
     answer_172 = _(
         'Your score for 172 - Electronic communications and radio engineering is:\n{score_172} '
         '(Your points for admission under the first and second priority)').format(score_172=score_172)
-    if MINSCOREFORBUDGET126 <= score_126:
+    if MINSCOREFORBUDGET126 <= float(score_126):
         answer_126 += _(' You can pass on a budget!')
     else:
         answer_126 += _(' Unfortunately, you may not qualify for the budget')
-    if MINSCOREFORBUDGET172 <= score_172:
+    if MINSCOREFORBUDGET172 <= float(score_172):
         answer_172 += _(' You can pass on a budget!')
     else:
         answer_172 += _(' Unfortunately, you may not qualify for the budget')
