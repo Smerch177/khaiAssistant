@@ -109,7 +109,7 @@ async def _set_ou(message: Message, user: User, state: FSMContext):
     else:
         await state.update_data(OU=0)
     data = await state.get_data()
-    score_126, score_172 = CalculateNMTscore.calculate_score(data)
+    score_126, score_172 = await CalculateNMTscore.calculate_score(data)
     await update_user_score(user, score_126, score_172)
     answer_126 = _('Your score for 126 - Information systems and technologies is:\n{score_126}').format(score_126=score_126)
     answer_172 = _(

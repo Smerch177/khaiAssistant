@@ -18,7 +18,7 @@ class CalculateNMTscore(StatesGroup):
     OU = State()  # only 172
 
     @staticmethod
-    def calculate_score(data):
+    async def calculate_score(data):
         # find k1, k2, k3, k4 in nmt_24_126 or nmt_24_172
         subjects = data['subjects']
         p = data['scores']
