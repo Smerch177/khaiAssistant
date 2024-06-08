@@ -93,7 +93,8 @@ async def _set_scores(message: Message, state: FSMContext):
     if iteration == 4:
         await state.set_state(CalculateNMTscore.OU)
         await message.answer(
-            _('Do you have a KHAI certificate? (only for specialty 172 - Telecommunications and Radio Engineering)'),
+            _('Do you have a KHAI certificate of successful completion of preparatory courses?'
+              '(It is considered only for the specialty 172)'),
             reply_markup=make_ou_keyboard()
         )
         return
@@ -111,10 +112,16 @@ async def _set_ou(message: Message, user: User, state: FSMContext):
     score_126, score_172 = CalculateNMTscore.calculate_score(data)
     await update_user_score(user, score_126, score_172)
     answer_126 = _('Your score for 126 - Information systems and technologies is:\n{score_126}').format(score_126=score_126)
-    answer_172 = _('Your score for 172 - Telecommunications and radio engineering is:\n{score_172}').format(score_172=score_172)
+    answer_172 = _(
+        'Your score for 172 - Telecommunications and radio engineering is:\n{score_172} '
+        '(Your points for admission under the first and second priority)').format(score_172=score_172)
     if MINSCOREFORBUDGET126 <= score_126:
-        answer_126 += _(' You can apply for a budget place')
+        answer_126 += _(' You can pass on a budget!')
+    else:
+        answer_126 += _(' Unfortunately, you may not qualify for the budget')
     if MINSCOREFORBUDGET172 <= score_172:
-        answer_172 += _(' You can apply for a budget place')
+        answer_172 += _(' You can pass on a budget!')
+    else:
+        answer_172 += _(' Unfortunately, you may not qualify for the budget')
     await message.answer(answer_126 + '\n' + answer_172, reply_markup=get_default_markup(user))
     await state.clear()

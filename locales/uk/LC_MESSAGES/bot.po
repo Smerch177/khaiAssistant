@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bot VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-06 21:47+0300\n"
-"PO-Revision-Date: 2024-06-06 21:47+0300\n"
+"POT-Creation-Date: 2024-06-08 23:43+0300\n"
+"PO-Revision-Date: 2024-06-08 23:43+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: uk\n"
 "Language-Team: uk <LL@li.org>\n"
@@ -129,7 +129,7 @@ msgstr ""
 "Привіт, {full_name}!\n"
 "Оберіть вашу мову"
 
-#: bot/handlers/start.py:30 bot/keyboards/default/default.py:10
+#: bot/handlers/start.py:31 bot/keyboards/default/default.py:10
 msgid "Help 🆘"
 msgstr "Допомога 🆘"
 
@@ -161,7 +161,7 @@ msgstr "Введіть ваш номер телефону"
 msgid "Your call has been ordered"
 msgstr "Ваш дзвінок замовлено"
 
-#: bot/handlers/user_menu.py:76 bot/handlers/user_menu.py:101
+#: bot/handlers/user_menu.py:76 bot/handlers/user_menu.py:102
 msgid "Choose the science"
 msgstr "Оберіть предмет"
 
@@ -171,13 +171,13 @@ msgstr "Введіть бал"
 
 #: bot/handlers/user_menu.py:96
 msgid ""
-"Do you have a KHAI certificate? (only for specialty 172 - "
-"Telecommunications and Radio Engineering)"
+"Do you have a KHAI certificate of successful completion of preparatory "
+"courses?(It is considered only for the specialty 172)"
 msgstr ""
-"У вас є сертифікат ХАІ? (тільки для спеціальності 172 - Телекомунікації "
-"та радіоінженерія)"
+"Чи є у вас сертифікат ХАІ про успішне закінчення підготовчих "
+"курсів?(Враховується тільки для спеціальності 172)"
 
-#: bot/handlers/user_menu.py:113
+#: bot/handlers/user_menu.py:114
 msgid ""
 "Your score for 126 - Information systems and technologies is:\n"
 "{score_126}"
@@ -185,17 +185,23 @@ msgstr ""
 "Ваш бал для 126 - Інформаційні системи та технології:\n"
 "{score_126}"
 
-#: bot/handlers/user_menu.py:114
+#: bot/handlers/user_menu.py:115
 msgid ""
 "Your score for 172 - Telecommunications and radio engineering is:\n"
-"{score_172}"
+"{score_172} (Your points for admission under the first and second "
+"priority)"
 msgstr ""
-"Ваш бал для 172 - Телекомунікації та радіоінженерія:\n"
-"{score_172}"
+"Ваш бал за спеціальністю 172 - Телекомунікації та радіотехніка становить:"
+"\n"
+"{score_172} (Ваші бали при вступі за першим та другим пріоритетом)"
 
-#: bot/handlers/user_menu.py:116 bot/handlers/user_menu.py:118
-msgid " You can apply for a budget place"
-msgstr "Ви можете подати заявку на бюджетне місце"
+#: bot/handlers/user_menu.py:119 bot/handlers/user_menu.py:123
+msgid " You can pass on a budget!"
+msgstr " Ви можете пройти на бюджет!"
+
+#: bot/handlers/user_menu.py:121 bot/handlers/user_menu.py:125
+msgid " Unfortunately, you may not qualify for the budget"
+msgstr " На жаль, ви можете не пройти на бюджет"
 
 #: bot/keyboards/default/calculate_score.py:27
 msgid "Yes"

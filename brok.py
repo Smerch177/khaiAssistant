@@ -1,6 +1,6 @@
-from typing import List, TYPE_CHECKING
+from typing import TYPE_CHECKING
 
-from taskiq import TaskiqScheduler, ScheduledTask
+from taskiq import TaskiqScheduler
 from taskiq_redis import ListQueueBroker, RedisScheduleSource
 
 from loader import redis_link
