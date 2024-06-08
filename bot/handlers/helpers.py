@@ -12,4 +12,6 @@ router = Router()
 
 @router.message(StateFilter('*'))
 async def _default_menu(message: Message, user: User):
-    await message.answer(_('Choose an action from the menu 👇'), reply_markup=get_default_markup(user))
+    text = _('Choose an action from the menu 👇')
+    text = text + '\n\n' + 'Developed by @Smerch_vlad'
+    await message.answer(text, reply_markup=get_default_markup(user))
