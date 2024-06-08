@@ -38,7 +38,7 @@ class CalculateNMTscore(StatesGroup):
             score_for_126 = 200
         if score_for_172 > 200:
             score_for_172 = 200
-        return score_for_126, score_for_172
+        return format(score_for_126, '.3f'), format(score_for_172, '.3f')
 
 
 class AnswerQuestion(StatesGroup):
