@@ -174,7 +174,7 @@ msgstr ""
 
 #: bot/handlers/user_menu.py:115
 msgid ""
-"Your score for 172 - Telecommunications and radio engineering is:\n"
+"Your score for 172 - Electronic communications and radio engineering is:\n"
 "{score_172} (Your points for admission under the first and second "
 "priority)"
 msgstr ""
