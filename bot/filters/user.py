@@ -32,8 +32,8 @@ class CalculateNMTscore(StatesGroup):
         k4_172 = get_weight_of_sciences(subjects['4'], 172)
         score_for_126 = ((k1_126 * float(p['1']) + k2_126 * float(p['2']) + k3_126 * float(p['3']) + k4_126 * float(
             p['4'])) / (k1_126 + k2_126 + k3_126 + k4_126)) * 1.07
-        score_for_172 = (k1_172 * float(p['1']) + k2_172 * float(p['2']) + k3_172 * float(p['3']) + k4_172 * float(
-            p['4'])) / (k1_172 + k2_172 + k3_172 + k4_172) + float(data['OU']) * 1.07 * 1.02
+        score_for_172 = ((k1_172 * float(p['1']) + k2_172 * float(p['2']) + k3_172 * float(p['3']) + k4_172 * float(
+            p['4'])) / (k1_172 + k2_172 + k3_172 + k4_172) + float(data['OU'])) * 1.07 * 1.02
         if score_for_126 > 200:
             score_for_126 = 200
         if score_for_172 > 200:
